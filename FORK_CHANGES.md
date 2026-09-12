@@ -2,6 +2,14 @@
 
 ## Runbook
 
+### Keep navigation collapse available on narrow split layouts (2026-09-12)
+
+- The bottom rail chevron now appears on both tablet and desktop layouts, including widths from 751 to 1,124 CSS pixels where the room panel occupies a larger share of the screen.
+- Collapsing hides the contextual panel and retains the icon rail; single-pane mobile layouts at 750 pixels and below keep their room navigation visible without a collapse control.
+- The existing per-user storage key is retained, and resizing through mobile preserves the saved collapse choice for the next split layout.
+- Coverage uses the real screen-size context and breakpoint classification to verify collapse, remount, and expansion at 751, 1,124, and 1,125 pixels, mobile behavior at 375 and 750 pixels, and state preservation while resizing.
+- Validation: 13 focused navigation tests, typecheck, production/PWA build, and touched-file ESLint and Prettier pass; the full suite passes 3,736 tests with the same four baseline failures in `xcodeCloudPostClone.test.ts` and `useRoomInputSendSessionController.test.ts`.
+
 ### Compact thread approvals with inspectable history (2026-09-12)
 
 - Pending calls share one bounded bar above the composer; Review captures the current requests and groups only the same canonical permission scope.

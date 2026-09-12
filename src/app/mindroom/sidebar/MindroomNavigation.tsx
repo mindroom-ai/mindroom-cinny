@@ -51,14 +51,14 @@ function PersistedMindroomPageNavProvider({
   const screenSize = useScreenSizeContext();
   const collapsedAtom = useMemo(() => makeDesktopPageNavCollapsedAtom(userId), [userId]);
   const [storedCollapsed, setCollapsed] = useAtom(collapsedAtom);
-  const isDesktop = screenSize === ScreenSize.Desktop;
+  const canCollapse = screenSize !== ScreenSize.Mobile;
   const value = useMemo(
     () => ({
-      canCollapse: isDesktop,
-      collapsed: isDesktop && storedCollapsed,
+      canCollapse,
+      collapsed: canCollapse && storedCollapsed,
       setCollapsed,
     }),
-    [isDesktop, storedCollapsed, setCollapsed]
+    [canCollapse, storedCollapsed, setCollapsed]
   );
 
   return (
